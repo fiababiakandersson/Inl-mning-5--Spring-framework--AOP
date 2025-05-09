@@ -3,6 +3,7 @@ package se.yrgo.dataaccess;
 import java.util.List;
 
 import se.yrgo.domain.Action;
+import se.yrgo.exceptions.*;
 
 public interface ActionDao {
 	public void create(Action newAction);

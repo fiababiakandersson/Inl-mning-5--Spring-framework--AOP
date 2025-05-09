@@ -7,6 +7,7 @@ import java.util.*;
 import org.springframework.jdbc.core.*;
 
 import se.yrgo.domain.*;
+import se.yrgo.exceptions.*;
 
 public class ActionDaoJdbcImpl implements ActionDao {
 	private static final String DELETE_SQL = "DELETE FROM ACTION WHERE ACTION_ID=?";

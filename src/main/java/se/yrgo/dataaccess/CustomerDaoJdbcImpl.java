@@ -7,6 +7,7 @@ import java.util.Date;
 import org.springframework.jdbc.core.*;
 
 import se.yrgo.domain.*;
+import se.yrgo.exceptions.*;
 
 public class CustomerDaoJdbcImpl implements CustomerDao {
     private static final String GET_ALL_CUSTOMER_SQL = "SELECT * FROM CUSTOMER";

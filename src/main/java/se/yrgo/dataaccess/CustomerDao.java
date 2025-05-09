@@ -3,6 +3,7 @@ package se.yrgo.dataaccess;
 import java.util.*;
 
 import se.yrgo.domain.*;
+import se.yrgo.exceptions.*;
 
 public interface CustomerDao {
 

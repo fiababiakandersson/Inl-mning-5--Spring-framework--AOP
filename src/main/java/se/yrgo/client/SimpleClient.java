@@ -20,10 +20,10 @@ public class SimpleClient {
 
         customerService.newCustomer(new Customer("CS03939", "Acme", "Good Customer"));
 
-        Call newCall = new Call("Larry Wall sniped Bob from Acme Corp");
-        Action action1 = new Action("Call back Larry to ask how things are going with the killing", new GregorianCalendar(2016, 0, 0),
+        Call newCall = new Call("Larry Wall called from Acme Corp");
+        Action action1 = new Action("Call back Larry to ask how things are going", new GregorianCalendar(2016, 0, 0),
                 "rac");
-        Action action2 = new Action("Check our pyramid scheme to make sure Larry is being tracked",
+        Action action2 = new Action("Check our sales dept to make sure Larry is being tracked",
                 new GregorianCalendar(2016, 0, 0), "rac");
 
         List<Action> actions = new ArrayList<Action>();

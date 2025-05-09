@@ -4,6 +4,7 @@ import java.util.*;
 
 import se.yrgo.dataaccess.*;
 import se.yrgo.domain.*;
+import se.yrgo.exceptions.*;
 
 public class CustomerManagementServiceProductionImpl implements CustomerManagementService {
 
