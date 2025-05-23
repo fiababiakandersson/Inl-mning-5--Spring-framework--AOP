@@ -1,23 +1,11 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:aop="http://www.springframework.org/schema/aop"
-    xmlns:tx="http://www.springframework.org/schema/tx"
-     xsi:schemaLocation="
-    http://www.springframework.org/schema/beans
-    http://www.springframework.org/schema/beans/spring-beans.xsd
-    http://www.springframework.org/schema/tx
-    http://www.springframework.org/schema/tx/spring-tx.xsd
-    http://www.springframework.org/schema/aop   
-    http://www.springframework.org/schema/aop/spring-aop.xsd">
-
-    <!-- advice -->
-    <bean id="advice" class="se.yrgo.advice.PerformanceTimingAdvice" />
-   <aop:config>
-        <aop:aspect ref="advice">
-        <aop:around method="performTimingMeasurement"
-        pointcut="execution(* se.yrgo.services..*.*(..)) || execution(* se.yrgo.dataaccess.*.*(..))" />
-        </aop:aspect>
-    </aop:config>
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="
+           http://www.springframework.org/schema/beans 
+           http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+           http://www.springframework.org/schema/aop 
+           http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
 
     <!-- datasources -->
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
@@ -44,9 +32,17 @@
 
     <bean id="diaryService" class="se.yrgo.services.diary.DiaryManagementServiceMockImpl"/>
 
-
     <bean id="callHandlingService" class="se.yrgo.services.calls.CallHandlingServiceImpl" >
         <constructor-arg ref="customerService" />
         <constructor-arg ref="diaryService" />
     </bean>
+
+    <!-- advice -->
+    <bean id="performTimingMeasurement" class="se.yrgo.advice.PerformanceTimingAdvice"/>
+    <aop:config>
+        <aop:aspect ref="performTimingMeasurement">
+            <aop:pointcut id="serviceDaoMethods" expression="execution(* se.yrgo.services..*(..)) || execution(* se.yrgo.dataaccess..*(..))" />
+            <aop:around method="performTimingMeasurement" pointcut-ref="serviceDaoMethods"/>
+        </aop:aspect>
+    </aop:config>
 </beans>
